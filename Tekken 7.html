@@ -1,0 +1,330 @@
+<html>
+<head>
+	<title>Tekken 7</title>
+	<link rel="icon" href="https://preview.redd.it/irnpjhi1ryh61.png?auto=webp&s=34d839027c9c4b4bb80efb593900b3d56085a136" type="image/x-icon">
+	<meta name="viewport" content="width=device-width, inital-scale=1.0">
+	<style>
+		body 
+		{
+			background-color: #c21708;
+		}
+		#box 
+		{
+			background-color: black;
+			width: 90%;
+			height: 100%;
+			margin: auto;
+			position: absolute;
+			top: 0%;
+			right: 1%;
+			left: 1%;
+			color: white;
+			border: 2px solid transparent;
+		}
+		#title
+		{
+			background-color: black	;
+			margin: auto;
+			width: 90%;
+			top: 0px;
+			position: relative;
+			z-index: 1; 
+		}
+		#charlist img
+		{
+			width: 250px;
+			height: 300px;
+		}
+		#charlist th, td 
+		{
+			color: white;
+		}
+		#charlist td
+		{
+			text-align: center;
+		}
+		.charEddy, .charSteve, .charKing, .charMR, .charJin
+		{
+			display: flexbox;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<img src="https://wallpaperaccess.com/full/7019872.jpg	" alt="Tekken Logo" width="250px" height="100px"> <!--The Logo-->
+		<form> 																		
+			<label for="skill">What's Your Fighting Style:</label>
+			<select id="skill" name="Skill List">
+				<option value="mobility">Mobility</option>								<!--Master Raven!-->
+				<option value="grappling">Grappling</option>							<!--King!-->
+				<option value="strength">Strength</option>								<!--Jin Kazama-->
+				<option value="combomaster">Combo Master</option>						<!--Eddy-->
+				<option value="counter">Counter Hitter</option>							<!--Steve!-->
+			</select>
+			<button type="button" onclick="genchar()">Generate</button> 				<!--The Button Which Will Run The Generate Character Function-->
+			<button type="button" onclick="showAllChar()">Show All</button>				<!--The Bittpm Which Will Run The Show All Character Function-->
+		</form>
+		<table id="charlist">
+			<tr>
+				<td></td>
+				<!--Images of Each Character-->
+				<td class="charEddy"><img src="https://static.wikia.nocookie.net/tekken/images/5/56/Eddy_Gordo_T7.jpg/revision/latest/scale-to-width-down/350?cb=20170408103724&path-prefix=en" alt="EddyPhoto"></td>
+				<td class="charSteve"><img src="https://static.wikia.nocookie.net/tekken/images/6/6b/T7FR_Steve.jpg/revision/latest/scale-to-width-down/350?cb=20210822074545&path-prefix=en" alt="StevePhoto"></td>
+				<td class="charKing"><img src="https://static.wikia.nocookie.net/tekken/images/4/42/T7FR_King.jpg/revision/latest?cb=20211120091042&path-prefix=en" alt="KingPhoto"></td>
+				<td class="charMR"><img src="https://static.wikia.nocookie.net/tekken/images/1/1d/MasterRavenT7.jpg/revision/latest?cb=20191018004040&path-prefix=en" alt="MRPhoto"></td>
+				<td class="charJin"><img src="data:image/jpeg;base64,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" alt="JinPhoto"></td>
+			</tr>
+			<tr>
+				<!--Where The Names Will Display-->
+				<th></th>
+				<th class="charEddy" id="eddyName"></th> 
+				<th class="charSteve" id="steveName"></th>
+				<th class="charKing" id="kingName"></th>
+				<th class="charMR" id="mrName"></th>
+				<th class="charJin" id="jinName"></th>
+			</tr>
+			<tr>
+				<!--Where The Fighting Styles Wil Display-->
+				<td>Fighting Style:</td>
+				<td class="charEddy" id="eddyStyle"></td> 
+				<td class="charSteve" id="steveStyle"></td>
+				<td class="charKing" id="kingStyle"></td>
+				<th class="charMR" id="mrStyle"></th>
+				<th class="charJin" id="jinStyle"></th>
+			</tr>
+			<tr>
+				<!--Where The Ratings Will Display-->
+				<td>Rating:</td>
+				<td class="charEddy" id="eddyRate"></td>
+				<td class="charSteve" id="steveRate"></td>
+				<td class="charKing" id="kingRate"></td>
+				<th class="charMR" id="mrRate"></th>
+				<th class="charJin" id="jinRate"></th>
+			</tr>
+		</table>
+		
+	</div>
+
+	<script>
+		//This Is To Get The Class And Put It Into Their Specific Variables
+		var eddyPick = document.getElementsByClassName('charEddy');
+		var stevePick = document.getElementsByClassName('charSteve');
+		var kingPick = document.getElementsByClassName('charKing');
+		var mrPick = document.getElementsByClassName('charMR');
+		var jinPick = document.getElementsByClassName('charJin');
+
+		
+		function hide()					//This Function Will Hide The Specified Elements
+		{
+			eddyFunctionNone();			//Functions That Hides The Elements
+			steveFunctionNone();
+			kingFunctionNone();
+			mrFunctionNone();
+			jinFunctionNone();
+		}
+		window.onload = hide; 			//Once The Page Finishes Loading It Will Hide The Elements
+
+		function character(name, fightstyle, rate)		// An Object That Specifies The Name, Fighting Style, And Ratings
+		{
+			this.name = name;
+			this.fightstyle = fightstyle;
+			this.rate = rate;
+		}
+
+		function genchar() 								//This Function will Generate The Character Based On What The User Chooses In The Form
+		{
+			var skills = document.getElementById("skill").value;	//To Get The Value Of The Select Form or Their Option
+			if(skills == "combomaster") 							//If the Value Is Combo Master
+			{
+																	//This Is To Specify That Only One Will Display and The Others Will Still Stay Hidden
+				steveFunctionNone();								//The Hidden Function
+				kingFunctionNone();									
+				mrFunctionNone();
+				jinFunctionNone();
+
+				eddyFunctionBlock();								//The Displayed Function
+				alert("I Recommend Eddy Gordo");					//An Alert Box That Says What The User's Picked Character is
+			}
+			else if (skills == "counter")							//If The Value Is Counter Hitter
+			{
+				eddyFunctionNone();
+				kingFunctionNone();
+				mrFunctionNone();
+				jinFunctionNone();
+				steveFunctionBlock();
+				alert("I Recommend Steve Fox");
+			}
+			else if (skills == "grappling")							//If The Value Is Grappler
+			{
+				eddyFunctionNone();
+				steveFunctionNone();
+				mrFunctionNone();
+				jinFunctionNone();
+				kingFunctionBlock();
+				alert("I Recommend King")
+			}
+			else if (skills == "mobility")							//If The Value Is Mobility
+			{
+				eddyFunctionNone();
+				steveFunctionNone();
+				kingFunctionNone();
+				jinFunctionNone();
+				mrFunctionBlock();
+				alert("I Recommend Master Raven")
+			}
+			else if (skills == "strength")							//If The Value is Strength
+			{
+				eddyFunctionNone();	
+				steveFunctionNone();
+				kingFunctionNone();
+				mrFunctionNone();
+				jinFunctionBlock();
+				alert("I Recommend Jin Kazama");
+			}
+		}
+		function showAllChar()										// This Function Will Show All The Characters
+		{
+			eddyFunctionNull();										//To Show The Characters
+			steveFunctionNull();					
+			kingFunctionNull();
+			mrFunctionNull();
+			jinFunctionNull();
+		}
+
+		/*				Eddy's Information And Functions 							*/
+		var Eddy = new character("Eddy Gordo", "Capoeira", 6);						//Their Information in an Object Value
+		document.getElementById("eddyName").innerHTML = Eddy.name;					//To Display It's Name
+		document.getElementById("eddyStyle").innerHTML = Eddy.fightstyle;			//To Display It's Fighting Style
+		document.getElementById("eddyRate").innerHTML = Eddy.rate + "/10";			//To Display It's Rating
+		function eddyFunctionBlock() 												//This Function Will Display The Character and it's Information
+		{
+			for (var x = 0; x < 4; x++)												//Looping Because of Class since It Is Like An Array Whenever You Want To Edit It
+			{
+				eddyPick[x].style.display = "block";								//To Display The Elements
+			}
+		}
+		function eddyFunctionNone() 												//This Function Will Hide The Character and It's Information
+		{
+			for (var x = 0; x < 4; x++)							
+			{
+				eddyPick[x].style.display = "none";									//To Hide The Elements				
+			}
+		}
+		function eddyFunctionNull() 												//To Remove It's Styles
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				eddyPick[x].style.display = null;									//Null So That It Reverts Back To It's Original Display 'flexbox'
+			}																		//P.S, It Cannot Display Back To Block Because It Will Become Messy
+		}
+
+		/*				Steve's Information And Functions 							*/
+		var Steve = new character("Steve Fox", "Boxing", 7);
+		document.getElementById("steveName").innerHTML = Steve.name;
+		document.getElementById("steveStyle").innerHTML = Steve.fightstyle ;
+		document.getElementById("steveRate").innerHTML = Steve.rate + "/10";
+		function steveFunctionBlock() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				stevePick[x].style.display = "block";
+			}
+		}
+		function steveFunctionNone() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				stevePick[x].style.display = "none";
+			}
+		}
+		function steveFunctionNull() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				stevePick[x].style.display = null;
+			}
+		}
+
+		/*				King's Information And Functions 							*/
+		var King = new character("King", "Pro Wrestling", 8)
+		document.getElementById("kingName").innerHTML = King.name;
+		document.getElementById("kingStyle").innerHTML = King.fightstyle ;
+		document.getElementById("kingRate").innerHTML = King.rate + "/10";
+		function kingFunctionBlock() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				kingPick[x].style.display = "block";
+			}
+		}
+		function kingFunctionNone() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				kingPick[x].style.display = "none";
+			}
+		}
+		function kingFunctionNull() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				kingPick[x].style.display = null;
+			}
+		}
+
+		/*				Master Raven's Information And Functions 							*/
+		var MR = new character("Master Raven", "Ninjutsu", 7)
+		document.getElementById("mrName").innerHTML = MR.name;
+		document.getElementById("mrStyle").innerHTML = MR.fightstyle ;
+		document.getElementById("mrRate").innerHTML = MR.rate + "/10";
+		function mrFunctionBlock() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				mrPick[x].style.display = "block";
+			}
+		}
+		function mrFunctionNone() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				mrPick[x].style.display = "none";
+			}
+		}
+		function mrFunctionNull() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				mrPick[x].style.display = null;
+			}
+		}
+
+		/*				Jin Kazama's Information And Functions 							*/
+		var Jin = new character("Jin Kazama", "Mishima-Ryu Karate", 9)
+		document.getElementById("jinName").innerHTML = Jin.name;
+		document.getElementById("jinStyle").innerHTML = Jin.fightstyle ;
+		document.getElementById("jinRate").innerHTML = Jin.rate + "/10";
+		function jinFunctionBlock() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				jinPick[x].style.display = "block";
+			}
+		}
+		function jinFunctionNone() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				jinPick[x].style.display = "none";
+			}
+		}
+		function jinFunctionNull() 
+		{
+			for (var x = 0; x < 4; x++)
+			{
+				jinPick[x].style.display = null;
+			}
+		}
+	</script>
+</body>
+</html>
